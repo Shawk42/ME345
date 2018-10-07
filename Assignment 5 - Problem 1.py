@@ -1,4 +1,6 @@
 """Assignment 5 - Problem 1"""
+import numpy as np
+import matplotlib.pyplot as plt
 
 """Givens"""
 p = 1              #given pressure in [atm]
@@ -30,3 +32,9 @@ L = (v*Re_cr)/V
 print(L,"Length in meters")
 
 """Plotting"""
+L_g = np.linspace(0,.5,num=500)
+Re = (V*L_g)/v
+plt.plot(L_g,Re)
+plt.show()
+
+#ineresting linear relationship that confirms the answer

@@ -9,6 +9,7 @@ V = 25             #given velocity in m/s
 Re_cr = 5*(10**5)  #Critical reynolds number
 
 """Linear Interpolation - From Table in textbook"""
+
 print("Interpolation for Density")
 x_1 = float(input("What is the low temperature"))
 x_2 = T
@@ -35,6 +36,8 @@ print(L,"Length in meters")
 L_g = np.linspace(0,.5,num=500)
 Re = (V*L_g)/v
 plt.plot(L_g,Re)
+plt.plot(Re_cr)
 plt.show()
 
-#ineresting linear relationship that confirms the answer
+#Found Length not if laminar or not
+print("INCORRECT")

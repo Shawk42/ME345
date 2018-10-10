@@ -21,3 +21,4 @@ if Re < Re_cr:
 else:
     print("Flow is turbulent as Re is greater than Re_cr")
     print("Re is", p, "% of R_cr")
+print("Reynolds Number is",int(Re))

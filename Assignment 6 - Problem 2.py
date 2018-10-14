@@ -1,5 +1,6 @@
 """Heat Transfer - Assignment 6 Problem 2"""
 print("Assignemt 6 problem 2")
+import numpy as np
 
 """Givens"""
 Klv = 273.15      #Conversion from C to K
@@ -10,10 +11,9 @@ T_steam = 150+Klv #Temperature of steam in Kelvin
 T_inf = 25+Klv    #Temperature of air in Kelvin
 V_inf = 5         #Velocity of air in m/s
 
-print(T_steam, "Temperature of Steam in Kelvin [initial guess]")
-
 """Assumed Values"""
 T_f = 420         #Temperature of air "film"
+print(T_f, "Temperature of film in Kelvin [initial guess]")
 
 """Interpolation X=temp, Y=property"""
 x_1 = 400
@@ -62,7 +62,31 @@ Nu_d = .3+x+y+z                       #caclulating Average Nu_d
 
 h = (Nu_d*K)/D_out                    #calculating average h value
 
+rad = D_out/2
+area = 2*np.pi*rad*L               #surface area of outside of the cylinder
 
+"""Solution Calculation"""
+
+q = h*area*Delta_T
+print(int(q),"q")
+
+"""Troubleshooting"""
+print("-" *50)
+print("Troubleshooting")
+print("-" *50)
+
+#print(rad, "radius")                #correct
+#print(area, "surface area of pipe") #correct
+#print(Delta_T)                       #correct
+#print(x, "x")                       #correct
+#print(y, "y")                       #correct
+#print(z, "z")                       #correct
+#print(Nu_d, "Nu_d")                 #correct
+#print(K, "K")
+#print(D_out,"D_out")
+#print(h,"h")
+print(T_steam, "T of steam")
+print(T_f, "T of film")
 
 """Verification Logic"""
 print("-" *50)

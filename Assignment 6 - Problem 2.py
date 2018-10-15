@@ -13,7 +13,7 @@ T_inf = 25+Klv    #Temperature of air in Kelvin
 V_inf = 5         #Velocity of air in m/s
 
 """Assumed Values"""
-T_f = np.linspace(T_steam-200,450)         #Temperature of air "film"
+T_f = np.linspace(400,450, num = 1000)         #Temperature of air "film"
 #print(T_f, "Temperature of film in Kelvin [initial guess]")
 
 """Interpolation X=temp, Y=property"""

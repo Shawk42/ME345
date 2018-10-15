@@ -1,6 +1,7 @@
 """Heat Transfer - Assignment 6 Problem 2"""
 print("Assignemt 6 problem 2")
 import numpy as np
+import matplotlib.pyplot as plt
 
 """Givens"""
 Klv = 273.15      #Conversion from C to K
@@ -12,8 +13,8 @@ T_inf = 25+Klv    #Temperature of air in Kelvin
 V_inf = 5         #Velocity of air in m/s
 
 """Assumed Values"""
-T_f = 420         #Temperature of air "film"
-print(T_f, "Temperature of film in Kelvin [initial guess]")
+T_f = np.linspace(T_steam-200,450)         #Temperature of air "film"
+#print(T_f, "Temperature of film in Kelvin [initial guess]")
 
 """Interpolation X=temp, Y=property"""
 x_1 = 400
@@ -65,35 +66,43 @@ h = (Nu_d*K)/D_out                    #calculating average h value
 rad = D_out/2
 area = 2*np.pi*rad*L               #surface area of outside of the cylinder
 
-"""Solution Calculation"""
+"""Solution Calculation [ANSWER]"""
 
 q = h*area*Delta_T
-print(int(q),"q")
+
+print("-" *50)
+print("Answer")
+print("-" *50)
+#print(int(q),"q")
+#print((q*.001),"q in kW")
+print("q at 420K was 3.601 kW")
 
 """Troubleshooting"""
 print("-" *50)
 print("Troubleshooting")
 print("-" *50)
 
-print(rad, "radius")                #correct
-print(area, "surface area of pipe") #correct
-print(Delta_T)                       #correct
-print(x, "x")                       #correct
-print(y, "y")                       #correct
-print(z, "z")                       #correct
-print(Nu_d, "Nu_d")                 #correct
-print(K, "K")
-print(D_out,"D_out")
-print(h,"h")
-print(T_steam, "T of steam")
-print(T_f, "T of film")
-print(K, "K")
+#print(rad, "radius")                #correct
+#print(area, "surface area of pipe") #correct
+#print(Delta_T, "Delta_T")             #correct
+#print(x, "x")                       #correct
+#print(y, "y")                       #correct
+#print(z, "z")                       #correct
+#print(Nu_d, "Nu_d")                 #correct
+#print(K, "K")
+#print(D_out,"D_out")
+#print(h,"h")
+#print(T_steam, "T of steam")
+#print(T_f, "T of film")
+#print(K, "K")
+
 
 """Verification Logic"""
 print("-" *50)
-print("Verification Logic results")
+print("Verification Logic results - removed for graphing")
 print("-" *50)
 
+"""
 #ensures correct temperature inputs for interpolation
 if x_2 > x_1 and x_3 > x_2:
     print("Interpolation temperatures are correct")
@@ -111,3 +120,13 @@ if check >= .2:
     print("Equation is valid")
 else:
     print("Equation is invalid")
+"""
+plt.plot(q*.001,T_f, 'g')
+plt.plot(3.601,420,'r*')
+plt.xlabel("q")
+plt.ylabel("T_film")
+plt.axvline(x = 3.601)    #line at point
+plt.hlines(420,-3,4,'b')
+plt.title("Graphical Interation")
+plt.grid()
+plt.show()

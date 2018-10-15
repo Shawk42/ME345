@@ -36,8 +36,8 @@ Pr = y_2
 #print(Pr, "Pr") #Logical result
 
 """K interpolation"""
-y_1 = 33.8*(10**3)
-y_3 = 37.3*(10**3)
+y_1 = 33.8*(10**-3)
+y_3 = 37.3*(10**-3)
 
 y_2 = (((x_2-x_1)*(y_3-y_1))/(x_3-x_1))+y_1
 K = y_2
@@ -75,18 +75,19 @@ print("-" *50)
 print("Troubleshooting")
 print("-" *50)
 
-#print(rad, "radius")                #correct
-#print(area, "surface area of pipe") #correct
-#print(Delta_T)                       #correct
-#print(x, "x")                       #correct
-#print(y, "y")                       #correct
-#print(z, "z")                       #correct
-#print(Nu_d, "Nu_d")                 #correct
-#print(K, "K")
-#print(D_out,"D_out")
-#print(h,"h")
+print(rad, "radius")                #correct
+print(area, "surface area of pipe") #correct
+print(Delta_T)                       #correct
+print(x, "x")                       #correct
+print(y, "y")                       #correct
+print(z, "z")                       #correct
+print(Nu_d, "Nu_d")                 #correct
+print(K, "K")
+print(D_out,"D_out")
+print(h,"h")
 print(T_steam, "T of steam")
 print(T_f, "T of film")
+print(K, "K")
 
 """Verification Logic"""
 print("-" *50)

@@ -19,9 +19,14 @@ nu = np.array([(274*(10**-6)), (1.635*(10**-2)), (0.124*(10**-2))])  #nu from ta
 Re = ((4*m_dot)/(np.pi*D*nu))   #Reynolds number
 Pr = np.array([1.70, (300+233)/2, (0.0196+0.0163)/2 ])      #Pr from table using avg. as interpolations
 
+water = 0
+engine_oil = 1
+mercury = 2
+
 """INTERMEDIATE CALCULATIONS"""
-x_f = .05*Re        #Fluid flow developed length
-x_t = x_f*Pr        #Thermal BL developed length
+x_f = .05*Re*D        #Fluid flow developed length
+x_t_a = np.multiply(Re,Pr)        #Thermal BL developed length intermediate
+x_t = .05*x_t_a*D
 
 
 """Logic and Verifications"""
@@ -29,9 +34,9 @@ print("-"*50)
 print("VERIFICATION AND LOGIC")
 print("-"*50)
 
-Re_wa = Re.item(0)            #pullling values from Re array
-Re_eo = Re.item(1)            #pullling values from Re array
-Re_mer = Re.item(2)            #pullling values from Re array
+Re_wa = Re.item(water)            #pullling values from Re array
+Re_eo = Re.item(engine_oil)            #pullling values from Re array
+Re_mer = Re.item(mercury)            #pullling values from Re array
 
 #Checking if flow is turblent or laminar
 if Re_wa <= 2300:
@@ -48,19 +53,58 @@ else:
     print("Mercury Oil flow is turbulent - Re is", int(Re_mer))
 
 #checking fluid developing length
-print(L, "The length of the pipe is")
-print(x_f, "Fluid flow fully develops at")
-print(x_t, "Thermal boundry latyer fully develops at")
-
-print(Pr, "Pr")
-print(Re, "Re")
-
+#water verification
+x_f_w = x_f.item(water)
+x_t_w = x_t.item(water)
+Pr_w = Pr.item(water)
+if Pr_w > 1:
+    if x_f_w < x_t_w:
+        print("Water boundry layers forming correctly")
+    else:
+        print("Water boundry layers formed incorrectly")
+if Pr_w < 1:
+    if x_f_w > x_t_w:
+        print("Water boundry layers forming correctly")
+    else:
+        print("Water boundry layers formed incorrectly")
+#Engine oil verification
+x_f_eo = x_f.item(engine_oil)
+x_t_eo = x_t.item(engine_oil)
+Pr_eo = Pr.item(engine_oil)
+if Pr_eo > 1:
+    if x_f_eo < x_t_eo:
+        print("Engine Oil boundry layers forming correctly")
+    else:
+        print("Engine Oil layers formed incorrectly")
+if Pr_eo < 1:
+    if x_f_eo > x_t_eo:
+        print("Engine Oil layers forming correctly")
+    else:
+        print("Engine Oil layers formed incorrectly")
+#Mercury verification
+x_f_m = x_f.item(mercury)
+x_t_m = x_t.item(mercury)
+Pr_m = Pr.item(mercury)
+if Pr_m > 1:
+    if x_f_m < x_t_m:
+        print("Mercury boundry layers forming correctly")
+    else:
+        print("Mercury boundry layers formed incorrectly")
+if Pr_m < 1:
+    if x_f_m > x_t_m:
+        print("Mercury boundry layers forming correctly")
+    else:
+        print("Mercury boundry layers formed incorrectly")
 
 """Result Printing"""
 print("-"*50)
 print("RESULTS")
 print("-"*50)
 print(Tavg, "Average Temperature in Kelvin")
-
-
+print(x_f_w, "Hydrodynamic distance - Water")
+print(x_t_w, "Thermal Distance - Water")
+print(x_f_eo, "Hydrodynamic distance - Engine Oil")
+print(x_t_eo, "Thermal Distance - Engine Oil")
+print(x_f_m, "Hydrodynamic distance - Mercury")
+print(x_t_m, "Thermal Distance - Mercury")
 

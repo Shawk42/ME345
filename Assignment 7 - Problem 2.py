@@ -12,35 +12,36 @@ D = 0.05         #Diamter of pipe [meters]
 L = 25           #Length of pipe [meters]
 
 '''ASSUMPTIONS'''
-T_o_a = (2*T_i)   #Outlet temperature assumption
+#T_o_a = (2*T_i_c)+Kelvin   # Initiial Outlet temperature assumption
+T_o_a = 420                 #Iteration 1 average
 T_avg_a = (T_i+T_o_a)/2
 
 '''FLUID PROPERTIES'''
 """Interpolation X=temp, Y=property"""
-#x_1 = 300
-#x_2 = T_avg_a
-#x_3 = 310
+x_1 = 350
+x_2 = T_avg_a
+x_3 = 360
 """Cp interpolation"""
-#y_1 = 1.909
-#y_3 = 1.951
-#y_2 = (((x_2-x_1)*(y_3-y_1))/(x_3-x_1))+y_1
-#Cp = y_2
+y_1 = 2.118
+y_3 = 2.161
+y_2 = (((x_2-x_1)*(y_3-y_1))/(x_3-x_1))+y_1
+Cp = y_2
 """Pr interpolation"""
-#y_1 = 6400
-#y_3 = 3400
-#y_2 = (((x_2-x_1)*(y_3-y_1))/(x_3-x_1))+y_1
-#Pr = y_2
+y_1 = 546
+y_3 = 395
+y_2 = (((x_2-x_1)*(y_3-y_1))/(x_3-x_1))+y_1
+Pr = y_2
 """Mu interpolation"""
-#y_1 = 48.6*(10**-2)
-#y_3 = 25.3*(10**-2)
-#y_2 = (((x_2-x_1)*(y_3-y_1))/(x_3-x_1))+y_1
-#mu = y_2
+y_1 = 3.56*(10**-2)
+y_3 = 2.52*(10**-2)
+y_2 = (((x_2-x_1)*(y_3-y_1))/(x_3-x_1))+y_1
+mu = y_2
 
-"""Values at T = 430K"""
-Cp = 2.471
-Pr = 88
-mu = 0.470*(10**-2)
-K = 132*(10**-3)            #Thermal Conductivity [constant value in range]
+#"""Values at T = 430K"""
+#Cp = 2.471
+#Pr = 88
+#mu = 0.470*(10**-2)
+K = 138*(10**-3)            #Thermal Conductivity [constant value in range]
 Re = (4*m_dot)/(np.pi*D*mu) #Reynolds number calcations
 x_f = 0.05*Re*D             #Distance to fully developed flow
 x_t = 0.05*Re*Pr*D          #Distance to fully developed thermal BL
@@ -57,9 +58,10 @@ P = np.pi*D               #Perimeter length of pipe
 d = (-(P*L)/(m_dot*Cp))
 c = T_s-T_i
 T_o = (-np.e**d)*c+T_s
+T_avg = (T_i+T_o)/2
 
 '''q calculations'''
-area = np.pi*D*L
+area = np.pi*(D/2)**2*L
 q = h*area*(T_s-T_o)
 
 '''LOGIC'''
@@ -95,7 +97,7 @@ print("Nu_d =",Nu_d)
 print("h =",h)
 print("Outlet Temperature =",T_o)
 print("Heat transfer rate =", q)
-print("Actual minus estimate =", T_o-T_o_a)
+print("Actual minus estimate of outlet temp =", T_o-T_o_a)
 
 '''PROCESS PRINTING'''
 print("-"*50)
@@ -106,3 +108,4 @@ print("The pipe is surrounded by a constant temperature of",T_s)
 print("It was assumed that the fluid exits the pipe at",T_o_a)
 print("The fluid was then caclulated to exit the pipe at ",T_o)
 print("The fluid was transfering heat out the pipe into the surface at a rate of",q)
+print("The fluid is at an average tempearture of",T_avg)

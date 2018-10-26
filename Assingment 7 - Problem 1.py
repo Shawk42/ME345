@@ -6,7 +6,7 @@ import numpy as np
 """Givens"""
 D = .025        #Diameter of pipe in meters [m]
 L = 15          #Length of pipe in meters [m]
-m_dot = .001    #Mass flow rate in [kg/s]
+m_dot = .01    #Mass flow rate in [kg/s]
 Ti = 325        #Entrance temperature [K]
 To = 425        #Exit temperature [K]
 
@@ -31,17 +31,20 @@ x_t = .05*x_t_a*D      #Thermal boundry layer developing length
 
 Nu_d = 4.36             #Flow is fully developed, as well as thermal boundry layer
 
+Re_wa = Re.item(water)            #pullling values from Re array
+Re_eo = Re.item(engine_oil)            #pullling values from Re array
+Re_mer = Re.item(mercury)            #pullling values from Re array
+
 """ANSWER CALCULATION"""
-h = (K*Nu_d)/D
+h = (K*Nu_d)/D    #h for water
+
 
 """LOGIC AND VERIFICATION"""
 print("-"*50)
 print("VERIFICATION AND LOGIC")
 print("-"*50)
 
-Re_wa = Re.item(water)            #pullling values from Re array
-Re_eo = Re.item(engine_oil)            #pullling values from Re array
-Re_mer = Re.item(mercury)            #pullling values from Re array
+
 
 #Checking if flow is turblent or laminar
 if Re_wa <= 2300:
@@ -100,6 +103,14 @@ if Pr_m < 1:
         print("Mercury boundry layers forming correctly")
     else:
         print("Mercury boundry layers formed incorrectly")
+
+#simple case identificatoin
+if x_f_w < L and x_t_w < L:
+    print("Water flow developed by outlet - Simple Case Valid")
+if x_f_eo < L and x_t_eo < L:
+    print("Engine Oil flow developed by outlet - Simple Case Valid")
+if x_f_m < L and x_t_m < L:
+    print("Mercury flow developed by outlet - Simple Case Valid")
 
 """Intermdiate Values Printing"""
 print("-"*50)

@@ -121,12 +121,3 @@ if check >= .2:
 else:
     print("Equation is invalid")
 """
-plt.plot(q*.001,T_f, 'g')
-plt.plot(3.601,420,'r*')
-plt.xlabel("q")
-plt.ylabel("T_film")
-plt.axvline(x = 3.601)    #line at point
-plt.hlines(420,-3,4,'b')
-plt.title("Graphical Interation")
-plt.grid()
-plt.show()

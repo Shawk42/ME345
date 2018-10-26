@@ -18,7 +18,7 @@ Tavg = (Ti+To)/2
 nu = np.array([(274*(10**-6)), (1.635*(10**-2)), (0.124*(10**-2))])  #nu from table at 375K [N-s/m^2]
 Re = ((4*m_dot)/(np.pi*D*nu))   #Reynolds number
 Pr = np.array([1.70, (300+233)/2, (0.0196+0.0163)/2 ])      #Pr from table using avg. as interpolations
-K = np.array([(681*(10**-3)), (.137+.136)/2, (9180000+9800000)/2])   #K from table using avg. as interpolations
+K = np.array([(681*(10**-3)), (.137+.136)/2, (9.180+9.800)/2])   #K from table using avg. as interpolations
 
 water = 0
 engine_oil = 1
@@ -128,6 +128,6 @@ print(x_t_m, "Thermal Distance - Mercury")
 print("-"*50)
 print("SOLUTION")
 print("-"*50)
-print("h_water = ",h.item(water))
-print("h_engine oil = ",h.item(engine_oil))
-print("h_mercury = ",h.item(mercury))
+print("h_water = ",h.item(water), "W/m^2-k")
+print("h_engine oil = ",h.item(engine_oil), "W/m^2-k")
+print("h_mercury = ",h.item(mercury), "W/m^2-k")

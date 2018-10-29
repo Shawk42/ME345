@@ -3,6 +3,7 @@ print("Assignment 7 - Problem 2 - Second Attempt")
 print(" "*50)
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 """GIVENS"""
 Kelvin = 273.15       #Conversion from C to K
@@ -13,8 +14,12 @@ T_s = 150+Kelvin      #Constant surface temp of pipe       [K]
 L = 25                #Length of pipe                      [m]
 
 pi = np.pi
+
+fact = float(input("How much larger is the outlet temperature expected to be"))
+
+
 """Assumptions"""
-T_o_a = 2*T_i          #Assumed outlet temp of pipe         [m]
+T_o_a = fact*T_i          #Assumed outlet temp of pipe         [m]
 T_mean_a =(T_o_a+T_i)/2  #Assumed average temp of fluid       [m]
 
 """
@@ -37,15 +42,16 @@ Cp = np.interp(T_mean_a,T_tab,Cp_tab)         #Interpolating Cp
 """FLOW TYPE CALCULATIONS"""
 #Reynolds number
 Re = (4*m_dot)/(pi*D*mu)
+
 if Re < 2300:
     print("Flow is Laminar - Re is =",int(Re))
 if Re > 2300:
     print("The flow is turbulent - Re is =",int(Re))
 if Re > 2300 and Re <3000:
     print("Flow is in transition region")
-
-#Hydraulic Developing Length
+#Hydrdulic Developing Length
 x_hyd = 0.05*Re*D
+
 if x_hyd < L:
     print("Hydraulic flow is FULLY DEVELOPED - Develops at",x_hyd)
 else:
@@ -53,6 +59,7 @@ else:
 
 #Thermal Developing Length
 x_thr = 0.05*Re*Pr*D
+
 if x_thr < L:
     print("Thermal BL is FULLY DEVELOPED - Develops at",x_thr)
 else:
@@ -74,23 +81,34 @@ T_o = -alpha*T_s+alpha*T_i+T_s
 
 alpha_check = (T_s-T_o)/(T_s-T_i)
 dev = np.absolute(alpha-alpha_check)
+
 if dev <= .00000001:
     print("Surface temp verified by alpha")
     print("Alpha Deviation",dev)
 else:
     print("Suface temp INVALID by alpha check"," Alpha Deviation", dev)
-if T_o < T_s:
-    print("INVALID solution the temperature is dropping")
+
+if T_o < T_i:
+    print("INVALID solution the temperature is dropping along the pipe")
 
 """q CALCULATION [HEAT RATE]"""
 delta_T = T_o-T_i
 q = m_dot*Cp*delta_T
+error = T_o-T_o_a
+
+if error > 0:
+    print("Above the assumed value")
+else:
+    print("Below the assumed value")
 
 """PRINTING"""
+
 print(" "*50)
 print("RESULTS AND TROUBLESHOOTING")
 print("-"*50)
+print("Inlet temp",T_i,"[K]")
 print("Assumed outlet temp",T_o_a,"[K]")
 print("Assumed average temp",T_mean_a,"[K]")
 print("Outlet temp",T_o,"[K]")
-print("Heat Rate",int(q*.001),"[kW]")
+print("Heat Rate",q*.001,"[kW]")
+print("Error",error)

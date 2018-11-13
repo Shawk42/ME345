@@ -1,5 +1,5 @@
-'''ASSIGNEMNT 8 - PROBLEM 2'''
-print("ASSIGNMENT 8 - PROBLEM 2")
+'''ASSIGNEMNT 8 - PROBLEM 3'''
+print("ASSIGNMENT 8 - PROBLEM 3")
 import numpy as np
 import scipy.constants as cst
 

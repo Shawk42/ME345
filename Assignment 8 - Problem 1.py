@@ -52,7 +52,8 @@ print(""*50)
 print("--"*10,"SOLUTIONS","--"*10)
 print("Fraction of emitted energy at 2000K = ",F_2000*100,"%")
 print("Fraction of emitted energy at 3300K = ",F_3000*100,"%")
-print("Max wavelength",lam_max)
+print("Max wavelength at 2000K",lam_max.item(low),"um")
+print("Max wavelength at 3200K",lam_max.item(high),"um")
 
 
 

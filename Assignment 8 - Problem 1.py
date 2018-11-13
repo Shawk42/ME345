@@ -1,7 +1,7 @@
 '''ASSIGNEMNT 8 - PROBLEM 1'''
 print("ASSIGNMENT 8 - PROBLEM 1")
 import numpy as np
-import scipy.constants as cst
+
 
 """GIVENS AND VARIABLE CONDITIONING"""
 T_1 = 2000  #[K]
@@ -13,9 +13,6 @@ lam = np.array([lam_low,lam_high])
 low = 0
 high = 1
 T = np.array([T_1,T_2])
-
-"""CONSTANTS"""
-sigma = cst.Stefan_Boltzmann      #Importing the Boltzman constant
 
 
 """LAMNDA T VALUES"""
@@ -45,15 +42,11 @@ lam_max = C_3/T
 
 """PRINTING"""
 print(""*50)
-print("--"*10,"CONSTANTS USED","--"*10)
-print("Boltzman Constant ",sigma)
-
-print(""*50)
 print("--"*10,"SOLUTIONS","--"*10)
 print("Fraction of emitted energy at 2000K = ",F_2000*100,"%")
 print("Fraction of emitted energy at 3300K = ",F_3000*100,"%")
-print("Max wavelength at 2000K",lam_max.item(low),"um")
-print("Max wavelength at 3200K",lam_max.item(high),"um")
+print("Max emitted wavelength for 2000K",lam_max.item(low),"um")
+print("Max emitted wavelength for 3300K",lam_max.item(high),"um")
 
 
 

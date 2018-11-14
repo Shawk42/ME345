@@ -23,6 +23,10 @@ q_conv = h*(T_s-T_inf)
 q_rad = E-(alpha*G)
 q_tot = q_conv+q_rad
 
+"""PART D [EMMISIVITY OF SURFACE]"""
+
+
+
 """SOLUTION AND SOLUTION VALIDATION"""
 print(""*50)
 print("-"*20,"ANSWER VALIDATION","-"*20)
@@ -32,4 +36,5 @@ print(""*50)
 print("-"*20,"SOLUTION","-"*20)
 print("Part A - Irradiation on the surface =",int(G),"[W/m^2]")
 print("Part B - Absorptivity of surface = ",alpha,"[dim]")
-print("Part C - Emissive power of the surface",int(q_tot),"[W/m^2]")
+print("Part C - Emissive power of the surface",int(E),"[W/m^2]")
+
